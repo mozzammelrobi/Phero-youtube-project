@@ -10,10 +10,19 @@ const fetchCategory = async() => {
     cards.forEach((card) => {
         // console.log(card)
         const btn = document.createElement('button')
-        btn.classList = ' bg-gray-300 hover:bg-red-600 hover:text-white px-1 rounded'
+        btn.classList = 'category-btn  bg-gray-300 hover:bg-red-600 hover:text-white px-1 rounded'
         btn.innerText = card.category
 
-        btn.addEventListener('click',() => fetchDataBycategories(card.category_id))
+        btn.addEventListener('click',() => {
+            fetchDataBycategories(card.category_id)
+
+            const allBtns = document.querySelectorAll('.category-btn')
+            for(const btn of allBtns){
+                btn.classList.remove('bg-red-400')
+            }
+            btn.classList.add('bg-red-400')
+            btn.classList.add('text-white')
+        })
 
         btnContainer.appendChild(btn)
 

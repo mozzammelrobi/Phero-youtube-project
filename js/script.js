@@ -1,5 +1,6 @@
 const btnContainer = document.getElementById('btn-container')
 const cardsContainer = document.getElementById('cards-container')
+const errorElement = document.getElementById('error-element')
 
 const fetchCategory = async() => {
     const res =await fetch(`https://openapi.programming-hero.com/api/videos/categories`)
@@ -29,10 +30,16 @@ const fetchDataBycategories = async (categoryId) => {
     console.log(cards)
 
 
+    if(cards.length === 0){
+        errorElement.classList.remove('hidden')
+    }else{
+        errorElement.classList.add('hidden')
+    }
+
    
     cardsContainer.textContent = ''
     cards.forEach((video) => {
-        console.log(video.authors[0])
+        // console.log(video.authors[0])
 
         let verifiedBadge = ''
         if(video.authors[0].verified){
